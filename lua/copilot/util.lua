@@ -62,7 +62,6 @@ end
 
 local internal_filetypes = {
   yaml = false,
-  markdown = false,
   help = false,
   gitcommit = false,
   gitrebase = false,
