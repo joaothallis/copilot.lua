@@ -38,8 +38,6 @@ M.setup = function(opts)
     create_cmds()
   end
 
-  require("copilot.command").enable()
-
   M.setup_done = true
 end
 
