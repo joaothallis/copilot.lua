@@ -34,8 +34,11 @@ end
 ---@alias copilot_set_editor_info_params { editorInfo: copilot_editor_info, editorPluginInfo: copilot_editor_plugin_info, editorConfiguration: copilot_editor_configuration, networkProxy?: copilot_network_proxy }
 
 ---@param params copilot_set_editor_info_params
-function mod.set_editor_info(client, params)
-  return mod.notify(client, "setEditorInfo", params)
+---@return any|nil err
+---@return nil data
+---@return table ctx
+function mod.set_editor_info(client, params, callback)
+  return mod.request(client, "setEditorInfo", params, callback)
 end
 
 ---@alias copilot_editor_configuration { enableAutoCompletions: boolean, disabledLanguages: string[] }
@@ -115,7 +118,8 @@ function mod.notify_shown(client, params, callback)
   return mod.request(client, "notifyShown", params, callback)
 end
 
----@alias copilot_get_completions_data { completions: { displayText: string, position: { character: integer, line: integer }, range: { ['end']: { character: integer, line: integer }, start: { character: integer, line: integer } }, text: string, uuid: string }[] }
+---@alias copilot_get_completions_data_completion { displayText: string, position: { character: integer, line: integer }, range: { ['end']: { character: integer, line: integer }, start: { character: integer, line: integer } }, text: string, uuid: string }
+---@alias copilot_get_completions_data { completions: copilot_get_completions_data_completion[] }
 
 ---@return any|nil err
 ---@return copilot_get_completions_data data
